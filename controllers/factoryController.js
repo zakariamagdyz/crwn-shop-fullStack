@@ -15,10 +15,13 @@ const getModelName = (Model, plural) => {
 /////////////////////////////////////////////////////////////////////////////////
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
+    // to allow get items for specific category
+    let filter = {};
+    if (req.params.categoryId) filter = { category: req.params.categoryId };
     // 1) get model name
     const modelName = getModelName(Model, "plural");
     // 2) create the query
-    const features = new ApiFeatures(Model.find(), req.query)
+    const features = new ApiFeatures(Model.find(filter), req.query)
       .sorting()
       .pagination()
       .filter()
@@ -48,7 +51,7 @@ exports.getOne = (Model, popOptions) =>
   });
 /////////////////////////////////////////////////////////////////////////////////
 
-exports.createOne = (Model, selectedOptions) =>
+exports.createOne = (Model, selectedOptions = []) =>
   catchAsync(async (req, res, next) => {
     const modelName = getModelName(Model);
     let filterdBody = req.body;

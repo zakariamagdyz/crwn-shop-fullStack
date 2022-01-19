@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "61e86ec6dc537fd4156b4c0a",
+    "name": "mens",
+    "photo": "https://i.ibb.co/R70vBrQ/men.png"
+  },
+  {
+    "_id": "61e86ed7dc537fd4156b4c10",
+    "name": "hats",
+    "photo": "https://i.ibb.co/cvpntL1/hats.png"
+  },
+  {
+    "_id": "61e86ee7dc537fd4156b4c13",
+    "name": "jackets",
+    "photo": "https://i.ibb.co/px2tCc3/jackets.png"
+  },
+  {
+    "_id": "61e86ef9dc537fd4156b4c16",
+    "name": "sneakers",
+    "photo": "https://i.ibb.co/0jqHpnp/sneakers.png"
+  },
+  {
+    "_id": "61e86f0cdc537fd4156b4c19",
+    "name": "womens",
+    "photo": "https://i.ibb.co/GCCdy8t/womens.png"
+  }
+]

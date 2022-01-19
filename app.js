@@ -5,7 +5,7 @@ const HttpError = require("./utils/HttpError");
 const errorMiddlware = require("./controllers/errorController");
 const usersRouter = require("./routes/usersRouter");
 const itemsRouter = require("./routes/itemsRouter");
-const sectionsRouter = require("./routes/sectionsRouter");
+const categoriesRouter = require("./routes/categoryRouter");
 const coockieParser = require("cookie-parser");
 
 //////////////////////////////////
@@ -26,7 +26,7 @@ app.use(express.static(`${__dirname}/public`));
 
 // 4) Handle app routers
 
-app.use("/crwn-shop/v1/sections", sectionsRouter);
+app.use("/crwn-shop/v1/categories", categoriesRouter);
 app.use("/crwn-shop/v1/items", itemsRouter);
 app.use("/crwn-shop/v1/users", usersRouter);
 
