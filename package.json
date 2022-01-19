@@ -1,0 +1,32 @@
+{
+  "name": "fullStack-clothing-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon server.js",
+    "start:client": "cd client&&npm start",
+    "start:debug": "ndb server.js",
+    "start": "concurrently \"npm run start:server\"  \"npm run start:client\"",
+    "build:client": "cd client&&npm run build",
+    "build:server": "set NODE_ENV=production&&node server.js",
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "helmet": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.7",
+    "nodemailer": "^6.7.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}
