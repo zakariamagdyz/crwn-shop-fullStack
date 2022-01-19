@@ -60,7 +60,7 @@ exports.createOne = (Model, selectedOptions) =>
   });
 /////////////////////////////////////////////////////////////////////////////////
 
-exports.updateOne = (Model) =>
+exports.updateOne = (Model, selectedOptions = []) =>
   catchAsync(async (req, res, next) => {
     const modelName = getModelName(Model);
     let filterdBody = req.body;

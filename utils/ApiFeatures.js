@@ -1,14 +1,14 @@
 module.exports = class ApiFeatures {
   constructor(query, queryString) {
     this.query = query;
-    this.queryStirng = queryString;
+    this.queryString = queryString;
   }
 
   filter() {
     // 1) Exclude filters query from queryString
-    const queryStringClone = { ...this.queryStirng };
+    const queryStringClone = { ...this.queryString };
     const excludedFields = ["page", "limit", "sort", "fields"];
-    excludedFields.forEach((field) => delete objString[field]);
+    excludedFields.forEach((field) => delete queryStringClone[field]);
     // 2) Add support for mongoDB queries $lte,lt,gt,gte
     let QObjString = JSON.stringify(queryStringClone);
     QObjString.replace(/\b(lt|lte|gt|gte)\b/g, (match) => `$${match}`);
@@ -19,7 +19,7 @@ module.exports = class ApiFeatures {
   }
 
   sorting() {
-    if (this.queryStirng.sort) {
+    if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(",").join(" ");
       this.query = this.query.sort(sortBy);
     } else {
@@ -30,7 +30,7 @@ module.exports = class ApiFeatures {
   }
 
   limitingFields() {
-    if (this.queryStirng.fields) {
+    if (this.queryString.fields) {
       const selectedFields = this.queryString.fields.split(",").join(" ");
       this.query = this.query.select(selectedFields);
     } else {
@@ -40,6 +40,7 @@ module.exports = class ApiFeatures {
   }
 
   pagination() {
+    console.log(this.queryString);
     const page = this.queryString.page || 1;
     const limit = this.queryString.limit || 100;
     const skip = (page - 1) * limit;
