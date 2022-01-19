@@ -17,7 +17,7 @@ router.patch("/updateMyPassword", authController.updatePassword);
 router.patch("/updateMe", userController.updateMe);
 router.delete("/deleteMe", userController.deleteMe);
 
-router.use(authController.restrictTo("admin"));
+router.use(authController.restrictTo("admin", "superAdmin"));
 
 router.route("/").get(userController.getUsers).post(userController.createAUser);
 
