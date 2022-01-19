@@ -1,7 +1,7 @@
 const HttpError = require("../utils/HttpError");
 const catchAsync = require("../utils/catchAsync");
 const ApiFeatures = require("../utils/ApiFeatures");
-const selectedFields = require("../utils/selectedFields");
+const selectedFields = require("../utils/selectFields");
 /////////////////////////////////////////////////////////////////////////////////
 
 const getModelName = (Model, plural) => {

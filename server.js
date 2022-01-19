@@ -11,7 +11,13 @@ dotEnv.config({ path: ".env" });
 
 const app = require("./app");
 const port = process.env.PORT || 5500;
-const databaseUri = process.env.DATABASE_URI.replace(
+
+const dataBaseSelector =
+  process.env.NODE_ENV === "production"
+    ? process.env.DATABASE_URI_PROD
+    : process.env.DATABASE_URI_DEV;
+
+const databaseUri = dataBaseSelector.replace(
   "<password>",
   process.env.DATABASE_PASSWORD
 );
