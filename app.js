@@ -18,6 +18,8 @@ if (process.env.NODE_ENV === "development") {
 // 3) Parse req.body
 app.use(express.json());
 
+app.use(express.static(`${__dirname}/public`));
+
 // 4) Handle app routers
 
 app.use("/api/v1/crwn-shop/sections", sectionsRouter);
