@@ -1,21 +1,21 @@
+import "./App.css";
 import { lazy, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { signIn } from "../auth/authSlice";
 import { useEffect } from "react";
-import "./App.css";
+import { fetchCategories } from "../directory/directoryAsyncActions";
+import { isSignedIn } from "../auth/authAsyncActions";
 import Header from "../header/header.component";
 const HomePage = lazy(() => import("../home-page/homepage"));
 const ShopCollection = lazy(() => import("../shop-collection/shopCollection"));
 const SignInSignOut = lazy(() => import("../signs-page/SignInSignUpPage"));
 const CheckoutPage = lazy(() => import("../checkout-page/checkoutPage"));
 
-function App({ isLoggedIn, handleSignIn }) {
+function App({ isLoggedIn, getCategories, checkForUser }) {
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) return;
-    handleSignIn(JSON.parse(user));
-  }, [handleSignIn]);
+    checkForUser();
+    getCategories();
+  }, [getCategories, checkForUser]);
 
   return (
     <>
@@ -45,7 +45,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignIn: (user) => dispatch(signIn(user)),
+    handleSignIn: (user) => dispatch(user),
+    getCategories: () => dispatch(fetchCategories()),
+    checkForUser: () => dispatch(isSignedIn()),
   };
 };
 

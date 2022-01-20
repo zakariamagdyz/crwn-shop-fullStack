@@ -5,11 +5,13 @@ const selectedFields = require("../utils/selectFields");
 /////////////////////////////////////////////////////////////////////////////////
 
 const getModelName = (Model, plural) => {
+  let modelName = Model.modelName;
   if (plural === "plural") {
-    return `${Model.modelName}`.toLowerCase().concat("s");
+    if (modelName.endsWith("y"))
+      return modelName.toLowerCase().slice(0, -1).concat("ies");
+    else return modelName.toLowerCase().concat("s");
   }
-
-  return `${Model.modelName}`.toLowerCase();
+  return modelName.toLowerCase();
 };
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -24,8 +26,8 @@ exports.getAll = (Model) =>
     const features = new ApiFeatures(Model.find(filter), req.query)
       .sorting()
       .pagination()
-      .filter()
-      .limitingFields();
+      .limitingFields()
+      .filter();
 
     const data = await features.query;
 

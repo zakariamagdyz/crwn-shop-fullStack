@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { signUp } from "../auth/authSlice";
 import FormInput from "../input-box/customInput.component";
 import CustomBtn from "../custom-btn/customBtn.component";
 import "../sign-in/sign-in.styles.scss";
+import { signUp } from "../auth/authAsyncActions";
 
 const SignUp = ({ handleSignUp }) => {
   const [state, setState] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    passwordConfirm: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,16 +22,14 @@ const SignUp = ({ handleSignUp }) => {
 
     if (isDataValid(state)) {
       // add user record to database
-      localStorage.setItem("user", JSON.stringify(state));
-      // sign up in application
       handleSignUp(state);
     }
   };
 
-  const isDataValid = ({ password, confirmPassword }) => {
+  const isDataValid = ({ password, passwordConfirm }) => {
     if (password.trim().length < 8)
       return alert("Minmum length for password is 8 characters");
-    if (password.trim() !== confirmPassword.trim())
+    if (password.trim() !== passwordConfirm.trim())
       return alert("Two passwords do not match");
 
     return true;
@@ -69,8 +67,8 @@ const SignUp = ({ handleSignUp }) => {
         <FormInput
           type="password"
           label="Confirm Password"
-          name="confirmPassword"
-          value={state.confirmPassword}
+          name="passwordConfirm"
+          value={state.passwordConfirm}
           handleChange={handleChange}
           required
         />

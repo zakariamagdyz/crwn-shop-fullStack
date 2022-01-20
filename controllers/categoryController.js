@@ -3,7 +3,9 @@ const Category = require("../models/categoryModel");
 const catchAsync = require("../utils/catchAsync");
 
 exports.getAllCategoriesWithItems = catchAsync(async (req, res, next) => {
-  const categories = await Category.find().populate("shopItems");
+  const categories = await Category.find()
+    .populate({ path: "shopItems", select: "-__v" })
+    .select("-__v");
   res.status(200).json({ status: "success", data: { categories } });
 });
 

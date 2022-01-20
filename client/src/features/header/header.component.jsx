@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { signOut } from "../auth/authSlice";
 import { ReactComponent as Logo } from "../../assets/svgs/crown.svg";
 import CartItem from "../cart-item/CartItem";
 import CartDropdown from "../cart-dropdown/CartDropdown";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "../auth/authAsyncActions";
 import "./header.styles.scss";
 
 const Header = ({ isLoggedIn, handleSignOut }) => {

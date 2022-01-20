@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { signIn } from "../auth/authSlice";
 import CustomInput from "../input-box/customInput.component";
 import CustomBtn from "../custom-btn/customBtn.component";
 import "./sign-in.styles.scss";
+import { signIn } from "../auth/authAsyncActions";
 
 const SignIn = ({ handleSignIn }) => {
   const [state, setState] = useState({ email: "", password: "" });
@@ -18,12 +18,12 @@ const SignIn = ({ handleSignIn }) => {
     //data not empty,trimmed , in lowercase  // if there are no html require
     if (!isDataValid(state)) return alert("Data is not valid");
     // get local storage data if it dosn't exist return error
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) return alert("There is no user for this Email");
     // check if user data is the same in local storage
     if (!isDataEqual) return alert("incorrect email or password");
     // log in
-    handleSignIn(user);
+    handleSignIn({ email: state.email, password: state.password });
+    // .unwrap()
+    // .then((value) => console.log(value));
   };
 
   const isDataValid = ({ email, password }) => {

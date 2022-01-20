@@ -205,3 +205,38 @@ exports.logout = catchAsync(async (req, res, next) => {
     .status(200)
     .json({ status: "success", message: "logged out successfully" });
 });
+//////////////////////////////////////////////////////////////////////
+exports.isSignedIn = catchAsync(async (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token)
+    return next(
+      new HttpError("You are not logged in! Please log in to get access", 401)
+    );
+
+  const decode = await jwt.verify(
+    token,
+    process.env.JWT_SECRET,
+    {},
+    (err, val) => {
+      if (err) throw err;
+      return val;
+    }
+  );
+
+  const user = await User.findById(decode.id);
+
+  if (!user)
+    return next(
+      new HttpError(
+        "The user belonging to this token does no longer exist",
+        401
+      )
+    );
+
+  if (user.isPasswordChangedAfter(decode.iat))
+    return next(
+      new HttpError("User currently changed password, Please login again", 401)
+    );
+
+  res.status(200).json({ status: "success", data: { user } });
+});

@@ -5,13 +5,10 @@ import { addToCart } from "../cart-item/cartSlice";
 import CustomBtn from "../custom-btn/customBtn.component";
 
 const CollectionItem = ({ item, handleAddToCart }) => {
-  const { name, price, imageUrl } = item;
+  const { name, price, photo } = item;
   return (
     <div className="collection-item">
-      <div
-        className="image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      ></div>
+      <div className="image" style={{ backgroundImage: `url(${photo})` }}></div>
       <div className="collection-footer">
         <span className="name">{name}</span>
         <span className="price">{price}$</span>

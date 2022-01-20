@@ -1,36 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
+import { signIn, signOut, signUp, isSignedIn } from "./authAsyncActions";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     currentUser: null,
     isLoggedIn: false,
+    error: null,
   },
-  reducers: {
-    signUp: {
-      reducer: (state, action) => {
+  extraReducers: (builder) => {
+    builder
+      .addCase(signIn.fulfilled, (state, action) => {
         state.currentUser = action.payload;
         state.isLoggedIn = true;
-      },
-      prepare: (data) => {
-        // localStorage.setItem("user", JSON.stringify(action.payload));
-        return { payload: { id: uuidv4(), ...data } };
-      },
-    },
-
-    signIn: (state, action) => {
-      state.currentUser = action.payload;
-      state.isLoggedIn = true;
-    },
-
-    signOut: (state) => {
-      state.currentUser = null;
-      state.isLoggedIn = false;
-    },
+      })
+      .addCase(signIn.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(signUp.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.isLoggedIn = true;
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        console.log(action.payload);
+        state.error = action.payload;
+      })
+      .addCase(signOut.fulfilled, (state, action) => {
+        state.currentUser = null;
+        state.isLoggedIn = false;
+      })
+      .addCase(signOut.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(isSignedIn.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.isLoggedIn = true;
+      })
+      .addCase(isSignedIn.rejected, (state, action) => {
+        state.error = action.payload;
+      });
   },
 });
-
-export const { signIn, signOut, signUp } = authSlice.actions;
 
 export default authSlice.reducer;

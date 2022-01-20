@@ -6,7 +6,7 @@ const crypto = require("crypto");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    maxLength: [20, "The maximum length of name is 20 charchters"],
+    maxLength: [30, "The maximum length of name is 20 charchters"],
     required: [true, "Please tell us your name!"],
     trim: true,
   },
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide your email"],
     unique: true,
-    maxLength: [20, "The maximum length of email is 20"],
+    maxLength: [50, "The maximum length of email is 20"],
     trim: true,
     lowercase: true,
     validate: [validator.isEmail, "Invalid email adress"],

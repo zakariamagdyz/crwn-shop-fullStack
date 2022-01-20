@@ -34,13 +34,12 @@ module.exports = class ApiFeatures {
       const selectedFields = this.queryString.fields.split(",").join(" ");
       this.query = this.query.select(selectedFields);
     } else {
-      this.query = this.query.select("-__V");
+      this.query = this.query.select("-__v");
     }
     return this;
   }
 
   pagination() {
-    console.log(this.queryString);
     const page = this.queryString.page || 1;
     const limit = this.queryString.limit || 100;
     const skip = (page - 1) * limit;

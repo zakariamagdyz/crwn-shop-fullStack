@@ -3,16 +3,25 @@ import MenuItem from "../menu-item/menu-item.component";
 import { connect } from "react-redux";
 import "./directory.styles.scss";
 
-const Directory = ({ sections }) => {
+const Directory = ({ categories, isLoading }) => {
   return (
     <div className="directory-menu">
-      {sections.map((section) => (
-        <MenuItem key={section.id} {...section} />
-      ))}
+      {isLoading ? (
+        <p>loading .....</p>
+      ) : categories && categories.length > 0 ? (
+        categories.map((category) => (
+          <MenuItem key={category.id} {...category} />
+        ))
+      ) : (
+        <p>There are no sections to show</p>
+      )}
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({ sections: state.directory });
+const mapStateToProps = (state) => ({
+  categories: state.directory.categories,
+  isLoading: state.directory.isLoading,
+});
 
 export default connect(mapStateToProps)(Directory);
