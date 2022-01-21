@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import ShopItems from "../../components/shop-collection-items/CollectionItems";
+import { Title } from "../../styles/Title";
 
 const Shop = ({ collections, isLoading }) => {
   return (
     <div>
-      <ShopItems isLoading={isLoading} collections={collections} />
+      <Title>Collections</Title>
+      <ShopItems isLoading={isLoading} results={collections} />
     </div>
   );
 };

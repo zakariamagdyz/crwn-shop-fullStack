@@ -1,19 +1,28 @@
-import CollectionPreview from "../shop-collection-perview/collectionPreview.component";
-import withLoading from "../withLoading/withLoading";
+import isDataFetched from "../isDataFetched/isDataFetched";
+import CollectionItem from "../collection-item/collectionItem.component";
+import {
+  Perview,
+  CollectionTitle,
+  CollectionsContainer,
+} from "./collection.styles";
 
-const ShopItems = ({ collections }) => {
+const ShopItems = ({ results: collections }) => {
   return (
     <div>
-      <h1>Collections</h1>
-      {collections && collections.length > 0 ? (
-        collections.map(({ id, ...otherCollectionProps }) => (
-          <CollectionPreview key={id} {...otherCollectionProps} />
-        ))
-      ) : (
-        <p>there are no items to show</p>
-      )}
+      {collections.map(({ _id, shopItems, name }) => (
+        <CollectionsContainer className="collection-preview" key={_id}>
+          <CollectionTitle className="title">
+            {name.toUpperCase()}
+          </CollectionTitle>
+          <Perview>
+            {shopItems.slice(0, 4).map((item) => (
+              <CollectionItem key={item._id} item={item} />
+            ))}
+          </Perview>
+        </CollectionsContainer>
+      ))}
     </div>
   );
 };
 
-export default withLoading(ShopItems);
+export default isDataFetched(ShopItems);

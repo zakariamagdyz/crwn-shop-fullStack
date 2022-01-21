@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const HomePage = ({ isLoading, categories }) => {
   return (
     <HomePageStyle>
-      <Directory isLoading={isLoading} categories={categories} />
+      <Directory isLoading={isLoading} results={categories} />
     </HomePageStyle>
   );
 };

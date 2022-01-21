@@ -12,6 +12,7 @@ const Collections = ({
   fetchACollection,
   isLoading,
   getCategoryName,
+  error,
 }) => {
   const { idCollection } = useParams();
 
@@ -24,8 +25,9 @@ const Collections = ({
   return (
     <CategoryItems
       isLoading={isLoading}
+      results={collectionData}
+      error={error}
       categoryName={categoryName}
-      collectionData={collectionData}
     />
   );
 };
@@ -34,6 +36,7 @@ const Collections = ({
 const mapStateToProps = (state) => ({
   collectionData: state.collection.collection,
   isLoading: state.collection.isLoading,
+  error: state.collection.error,
   getCategoryName: (id) => selectCategoryName(id)(state),
 });
 

@@ -1,28 +1,21 @@
 import React from "react";
 import CollectionItem from "../collection-item/collectionItem.component";
-import withLoading from "../withLoading/withLoading";
+import isDataFetched from "../isDataFetched/isDataFetched";
 
-import {
-  ItemsContainer,
-  CategoryContainer,
-  CategoryTitle,
-} from "./category.style";
+import { ItemsContainer, CategoryContainer } from "./category.style";
+import { Title } from "../../styles/Title";
 
-const CategoryItems = ({ categoryName, collectionData }) => {
+const CategoryItems = ({ categoryName, results: collectionData }) => {
   return (
     <CategoryContainer>
-      <CategoryTitle>{categoryName}</CategoryTitle>
+      <Title>{categoryName}</Title>
       <ItemsContainer className="collection-container">
-        {collectionData && collectionData.length > 0 ? (
-          collectionData.map((item) => (
-            <CollectionItem key={item._id} item={item} />
-          ))
-        ) : (
-          <p>there are no items to show</p>
-        )}
+        {collectionData.map((item) => (
+          <CollectionItem key={item._id} item={item} />
+        ))}
       </ItemsContainer>
     </CategoryContainer>
   );
 };
 
-export default withLoading(CategoryItems);
+export default isDataFetched(CategoryItems);

@@ -1,20 +1,16 @@
 import React from "react";
 import MenuItem from "../menu-item/menu-item.component";
-import withLoading from "../withLoading/withLoading";
+import isDataFetched from "../isDataFetched/isDataFetched";
 import { DirectoryContainer } from "./directory.styles";
 
-const Directory = ({ categories }) => {
+const Directory = ({ results: categories }) => {
   return (
     <DirectoryContainer>
-      {categories && categories.length > 0 ? (
-        categories.map((category) => (
-          <MenuItem key={category.id} {...category} />
-        ))
-      ) : (
-        <p>There are no sections to show</p>
-      )}
+      {categories.map((category) => (
+        <MenuItem key={category.id} {...category} />
+      ))}
     </DirectoryContainer>
   );
 };
 
-export default withLoading(Directory);
+export default isDataFetched(Directory);

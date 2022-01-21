@@ -12,7 +12,8 @@ export const fetchCategories = createAsyncThunk(
       });
       return res.data.data.categories;
     } catch (error) {
-      return rejectWithValue(error);
+      // in listner render error to client by use action.payload.message
+      return rejectWithValue(error.response.data);
     }
   }
 );
