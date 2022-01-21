@@ -14,12 +14,12 @@ export const CategoryContainer = styled.div`
   position: relative;
   overflow: hidden;
 
-  &:first-child {
-    margin-right: 0.8rem;
+  &:nth-last-child(1) {
+    height: 34rem;
   }
 
-  &:last-child {
-    margin-left: 0.8rem;
+  &:nth-last-child(2) {
+    height: 34rem;
   }
 
   &:hover {

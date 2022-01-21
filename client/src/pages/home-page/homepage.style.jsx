@@ -5,9 +5,9 @@ export const HomePageStyle = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 2rem 2rem;
+  padding: 2rem 0;
 
-  @media ${devicesBreakpoints.tabPort} {
+  @media ${devicesBreakpoints.mobile} {
     padding: 2rem 1rem;
   }
 `;

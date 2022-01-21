@@ -28,6 +28,10 @@ export const GlobalStyle = styled.createGlobalStyle`
     }
   }
 
+  :root {
+    --main-color: #fff;
+  }
+
   body {
     box-sizing: border-box;
     font-family: "Open Sans Condensed", sans-serif;

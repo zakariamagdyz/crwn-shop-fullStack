@@ -1,14 +1,11 @@
 import React from "react";
-import "./customBtn.styles.scss";
+import { StyledBtn } from "./btn.styles";
 
 const CustomBtn = ({ children, inverted, ...others }) => {
   return (
-    <button
-      className={inverted ? "custom-button inverted" : "custom-button"}
-      {...others}
-    >
+    <StyledBtn inverted={inverted} {...others}>
       {children}
-    </button>
+    </StyledBtn>
   );
 };
 

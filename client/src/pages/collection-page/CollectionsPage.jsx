@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchACollection } from "../../redux/collection/collectionSlice.js";
 import { selectCategoryName } from "../../redux/directory/directorySLice";
-import "./Collections.styles.scss";
-
+////////////////////////////////////////////////////////////////
 // we need to handle error component while use search for diff shop route
 
 const Collections = ({
@@ -31,6 +30,7 @@ const Collections = ({
   );
 };
 
+///////////////////////////////////////////////////////////////
 const mapStateToProps = (state) => ({
   collectionData: state.collection.collection,
   isLoading: state.collection.isLoading,

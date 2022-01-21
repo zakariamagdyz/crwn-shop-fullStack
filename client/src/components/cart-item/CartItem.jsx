@@ -1,16 +1,15 @@
 import React from "react";
-import { ReactComponent as Logo } from "../../assets/svgs/shopping-bag.svg";
 import { selectItemsCount } from "../../redux/cart/cartSlice";
-
 import { connect } from "react-redux";
-import "./cartItems.styles.scss";
+
+import { CartContainer, CartLogo, CartItemsNum } from "./cart.styles";
 
 const CartItem = ({ itemsNumber, handleDropdown }) => {
   return (
-    <div className="cart-container" onClick={handleDropdown}>
-      <Logo className="logo" />
-      <span className="cart-nums">{itemsNumber}</span>
-    </div>
+    <CartContainer onClick={handleDropdown}>
+      <CartLogo />
+      <CartItemsNum>{itemsNumber}</CartItemsNum>
+    </CartContainer>
   );
 };
 

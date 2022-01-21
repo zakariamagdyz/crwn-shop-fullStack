@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { ReactComponent as Logo } from "../../assets/svgs/crown.svg";
 import CartItem from "../cart-item/CartItem";
 import CartDropdown from "../cart-dropdown/CartDropdown";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../redux/auth/authAsyncActions";
-import "./header.styles.scss";
+import {
+  HeaderContainer,
+  HeaderLink,
+  HeaderList,
+  HeaderLogo,
+} from "./header.style";
+
+///////////////////////////////////////////////////////
 
 const Header = ({ isLoggedIn, handleSignOut }) => {
   const [toggleDropdown, setDropdown] = useState(false);
@@ -16,28 +21,22 @@ const Header = ({ isLoggedIn, handleSignOut }) => {
     setDropdown(!toggleDropdown);
   };
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
-        <Logo className="logo" />
-      </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
-          SHOP
-        </Link>
+    <HeaderContainer>
+      <HeaderLink to="/" className="logo">
+        <HeaderLogo />
+      </HeaderLink>
+      <HeaderList>
+        <HeaderLink to="/shop">SHOP</HeaderLink>
         {isLoggedIn ? (
-          <button className="option header_btn" onClick={handleSignOut}>
+          <HeaderLink as="div" onClick={handleSignOut}>
             SIGN OUT
-          </button>
+          </HeaderLink>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <HeaderLink to="/signin">SIGN IN</HeaderLink>
         )}
-        <Link className="option" to="/contact">
-          CONTACT
-        </Link>
+        <HeaderLink to="/contact">CONTACT</HeaderLink>
         <CartItem handleDropdown={handleToggleDropdown} />
-      </div>
+      </HeaderList>
 
       {toggleDropdown && (
         <CartDropdown
@@ -45,7 +44,7 @@ const Header = ({ isLoggedIn, handleSignOut }) => {
           navigateTo={navigate}
         />
       )}
-    </div>
+    </HeaderContainer>
   );
 };
 
