@@ -1,11 +1,11 @@
 import React from "react";
 import MenuItem from "../menu-item/menu-item.component";
 import withLoading from "../withLoading/withLoading";
-import "./directory.styles.scss";
+import { DirectoryContainer } from "./directory.styles";
 
 const Directory = ({ categories }) => {
   return (
-    <div className="directory-menu">
+    <DirectoryContainer>
       {categories && categories.length > 0 ? (
         categories.map((category) => (
           <MenuItem key={category.id} {...category} />
@@ -13,7 +13,7 @@ const Directory = ({ categories }) => {
       ) : (
         <p>There are no sections to show</p>
       )}
-    </div>
+    </DirectoryContainer>
   );
 };
 

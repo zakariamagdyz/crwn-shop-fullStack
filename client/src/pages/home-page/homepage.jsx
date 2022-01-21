@@ -1,13 +1,14 @@
+import { HomePageStyle } from "./homepage.style";
 import React from "react";
-import "./hompage.styles.scss";
 import Directory from "../../components/home-directory/directory.component";
 import { connect } from "react-redux";
 
+//////////////////////////////////////////
 const HomePage = ({ isLoading, categories }) => {
   return (
-    <div className="homepage">
+    <HomePageStyle>
       <Directory isLoading={isLoading} categories={categories} />
-    </div>
+    </HomePageStyle>
   );
 };
 

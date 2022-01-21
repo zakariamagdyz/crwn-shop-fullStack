@@ -1,26 +1,30 @@
-import "./App.css";
-import { lazy, Suspense } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { lazy, Suspense, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { fetchCategories } from "../../redux/directory/directoryAsyncActions";
 import { isSignedIn } from "../../redux/auth/authAsyncActions";
+/////////////////// import components ////////////////////////////
+import { GlobalStyle } from "./globalStyle";
 import Header from "../../components/header/header.component";
 const HomePage = lazy(() => import("../home-page/homepage"));
 const ShopRootPage = lazy(() => import("../shop-root-page/shopCollection"));
 const SignInSignOut = lazy(() => import("../signs-page/SignInSignUpPage"));
 const CheckoutPage = lazy(() => import("../checkout-page/checkoutPage"));
 
+/////////////////////////////////////////////////////////////////////////////
+
 function App({ isLoggedIn, getCategories, checkForUser }) {
+  // check if user is logged in and fetch app data from backend
   useEffect(() => {
     checkForUser();
     getCategories();
   }, [getCategories, checkForUser]);
 
+  /// return Jsx
   return (
-    <>
+    <Fragment>
+      <GlobalStyle />
       <Header isLoggedIn={isLoggedIn} />
-
       <Suspense fallback={<div>waiting ....</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -35,7 +39,7 @@ function App({ isLoggedIn, getCategories, checkForUser }) {
           <Route path="*" element={<h1>No route Defined</h1>} />
         </Routes>
       </Suspense>
-    </>
+    </Fragment>
   );
 }
 
