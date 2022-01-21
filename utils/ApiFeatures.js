@@ -11,7 +11,12 @@ module.exports = class ApiFeatures {
     excludedFields.forEach((field) => delete queryStringClone[field]);
     // 2) Add support for mongoDB queries $lte,lt,gt,gte
     let QObjString = JSON.stringify(queryStringClone);
-    QObjString.replace(/\b(lt|lte|gt|gte)\b/g, (match) => `$${match}`);
+    QObjString = QObjString.replace(
+      /\b(lt|lte|gt|gte)\b/g,
+      (match) => `$${match}`
+    );
+
+    console.log(QObjString);
 
     this.query = this.query.find(JSON.parse(QObjString));
 

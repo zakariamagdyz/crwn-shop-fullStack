@@ -56,7 +56,17 @@ exports.signIn = catchAsync(async (req, res, next) => {
 //////////////////////////////////////////////////////////////////////
 
 exports.protect = catchAsync(async (req, res, next) => {
+  // let token;
+
+  // if (
+  //   req.headers.Authorization &&
+  //   req.headers.Authorization.startsWith("Bearer ")
+  // ) {
+  //   token = req.headers.Authorization.split(" ")[1];
+  // }
+
   const token = req.cookies.jwt;
+
   if (!token)
     return next(
       new HttpError("You are not logged in! Please log in to get access", 401)
