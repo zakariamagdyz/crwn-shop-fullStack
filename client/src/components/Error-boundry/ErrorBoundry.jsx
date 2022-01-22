@@ -1,5 +1,11 @@
 import React from "react";
 
+import {
+  ErrorImageContainer,
+  ErrorImageOverlay,
+  ErrorImageText,
+} from "./errorBoundry.styles";
+
 export default class ErrorBoundry extends React.Component {
   state = { hasError: false };
 
@@ -12,7 +18,14 @@ export default class ErrorBoundry extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) return <h1>Oops,we done goofed up</h1>;
+    if (this.state.hasError) {
+      return (
+        <ErrorImageOverlay>
+          <ErrorImageContainer imageUrl="https://i.imgur.com/yW2W9SC.png" />
+          <ErrorImageText>Sorry this page is broken</ErrorImageText>
+        </ErrorImageOverlay>
+      );
+    }
     return this.props.children;
   }
 }

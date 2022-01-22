@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { fetchCategories } from "../../redux/directory/directoryAsyncActions";
 import { isSignedIn } from "../../redux/auth/authAsyncActions";
+import Spinner from "../../components/Spinner/spinner";
 /////////////////// import components ////////////////////////////
 import { GlobalStyle } from "./globalStyle";
 import Header from "../../components/header/header.component";
@@ -25,7 +26,7 @@ function App({ isLoggedIn, getCategories, checkForUser }) {
     <Fragment>
       <GlobalStyle />
       <Header isLoggedIn={isLoggedIn} />
-      <Suspense fallback={<div>waiting ....</div>}>
+      <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop/*" element={<ShopRootPage />} />

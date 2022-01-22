@@ -2,7 +2,6 @@ import { HomePageStyle } from "./homepage.style";
 import React from "react";
 import Directory from "../../components/home-directory/directory.component";
 import { connect } from "react-redux";
-
 //////////////////////////////////////////
 const HomePage = ({ isLoading, categories }) => {
   return (

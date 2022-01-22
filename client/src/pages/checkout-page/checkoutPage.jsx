@@ -1,25 +1,25 @@
 import React from "react";
-import "./checkoutPage.styles.scss";
 import { connect } from "react-redux";
 import { selectItems, selectTotalPrice } from "../../redux/cart/cartSlice";
 import CheckoutItem from "../../components/checkout-item/checkoutItem";
+import { Checkout, CheckoutHeader, CheckoutTotal } from "./checkout.styles";
 
 const checkoutPage = ({ checkoutItems, totalPrice }) => {
   return (
-    <div className="checkout">
-      <div className="checkout__header">
-        <span className="checkout__title">Product</span>
-        <span className="checkout__title">Description</span>
-        <span className="checkout__title">Quantity</span>
-        <span className="checkout__title">Price</span>
-        <span className="checkout__title">Remove</span>
-      </div>
+    <Checkout>
+      <CheckoutHeader>
+        <span>Product</span>
+        <span>Description</span>
+        <span>Quantity</span>
+        <span>Price</span>
+        <span>Remove</span>
+      </CheckoutHeader>
       {checkoutItems.map((item) => (
         <CheckoutItem key={item._id} item={item} />
       ))}
 
-      <div className="checkout__total"> TOTAL : {totalPrice} $</div>
-    </div>
+      <CheckoutTotal>TOTAL : {totalPrice} $</CheckoutTotal>
+    </Checkout>
   );
 };
 
