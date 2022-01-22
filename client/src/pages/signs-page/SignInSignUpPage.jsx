@@ -1,13 +1,12 @@
 import SignIn from "../../components/signs-sign-in/sign-in.component";
 import SignUp from "../../components/signs-sign-up/signup.component";
 
-import "./contactPage.styles.scss";
-
+import { SignsContainer } from "./signs.styles";
 const ContactPage = () => (
-  <div className="contact-page">
+  <SignsContainer>
     <SignIn />
     <SignUp />
-  </div>
+  </SignsContainer>
 );
 
 export default ContactPage;

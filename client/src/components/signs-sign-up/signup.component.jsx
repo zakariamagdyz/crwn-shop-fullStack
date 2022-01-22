@@ -2,7 +2,6 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import FormInput from "../input-box/customInput.component";
 import CustomBtn from "../custom-btn/customBtn.component";
-import "../signs-sign-in/sign-in.styles.scss";
 import { signUp } from "../../redux/auth/authAsyncActions";
 
 const SignUp = ({ handleSignUp }) => {
