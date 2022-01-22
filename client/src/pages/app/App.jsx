@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { fetchCategories } from "../../redux/directory/directoryAsyncActions";
 import { isSignedIn } from "../../redux/auth/authAsyncActions";
 import Spinner from "../../components/Spinner/spinner";
+import Error from "../../components/Error/errorComponent";
 /////////////////// import components ////////////////////////////
 import { GlobalStyle } from "./globalStyle";
 import Header from "../../components/header/header.component";
@@ -37,7 +38,15 @@ function App({ isLoggedIn, getCategories, checkForUser }) {
             }
           />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="*" element={<h1>No route Defined</h1>} />
+          <Route
+            path="*"
+            element={
+              <Error
+                message="Sorry, This page is not found"
+                imageUrl="https://i.imgur.com/Q2BAOd2.png"
+              />
+            }
+          />
         </Routes>
       </Suspense>
     </Fragment>

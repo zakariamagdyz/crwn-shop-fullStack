@@ -27,6 +27,7 @@ const Collections = ({
       isLoading={isLoading}
       results={collectionData}
       error={error}
+      errorMessage="No category found with that ID! Please try again :)"
       categoryName={categoryName}
     />
   );
