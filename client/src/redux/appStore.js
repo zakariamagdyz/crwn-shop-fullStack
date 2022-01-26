@@ -3,6 +3,7 @@ import authSlice from "./auth/authSlice";
 import directorySlice from "./directory/directorySLice";
 import cartSlice from "./cart/cartSlice";
 import collectionSlice from "./collection/collectionSlice";
+import shopItems from "./shopItems/shopSlice";
 //import superAxios from "../config/axios";
 
 // const axiosMiddleware = (store) => (next) => (action) => {
@@ -23,6 +24,7 @@ export default configureStore({
     directory: directorySlice,
     cart: cartSlice,
     collection: collectionSlice,
+    items: shopItems,
   },
   // middleware: [...getDefaultMiddleware(), axiosMiddleware],
   devTools: process.env.NODE_ENV === "production" ? false : true,

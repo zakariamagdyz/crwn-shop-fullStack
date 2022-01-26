@@ -15,11 +15,11 @@ const getModelName = (Model, plural) => {
 };
 
 /////////////////////////////////////////////////////////////////////////////////
-exports.getAll = (Model) =>
+exports.getAll = (Model, parentField) =>
   catchAsync(async (req, res, next) => {
-    // to allow get items for specific category
+    // to allow multi nested routes -- get all child of one parent
     let filter = {};
-    if (req.params.categoryId) filter = { category: req.params.categoryId };
+    if (parentField && req.params.id) filter = { [parentField]: req.params.id };
     // 1) get model name
     const modelName = getModelName(Model, "plural");
     // 2) create the query

@@ -1,0 +1,201 @@
+ Planning  Crwn-shop
+
+
+ * /////////////////////////////////////////////////////////////////////////////
+ * user story
+ //////////////////////////////////////////////////////////////////////////////
+
+   * User prespective
+   //////////////////
+      * As a user i wanna have my profile,so i can login or logout from the app
+         backEnd
+            * Add forgot password , Reset password Feature , update email,password,photo,adress,phone
+            * deactive my account functionality
+         frontEnd
+            * profile page
+            * change photo
+            * update password 
+            * deactive account
+            * update email
+            * send messages 
+            * update personal info
+      * As a user i wanna choose from products as i want , so i can go to cart to make order
+         * backEnd
+            * create order  
+      * As a user i wanna implement an order with a coupon , so i can have a discount on my orders
+         * backEnd 
+            * create coupon model   
+            * create an order with an cupon 
+      * As a user i wanna favorite some of the items , so i can buy them later
+         * backEnd
+            * create favorite model 
+            * create , delete , get all  a favorite by item id , user id 
+      * As a user i can bring back the order i already made, through 14 days, so i can make sure to get high quality
+      * As a user i wanna be able to send message to the admin, so if something wrong happend i can contact with them
+        * backend:
+            * create message model
+            * send messages to admins
+      * As a user i wanna make a review to the shop item, so i can share my opinion with others
+        * As a user i wanna be able only to review the items i had bought, so i can't review something i never bought
+        * As a user i wanna to be allowed to make one review 
+         backend :
+            * create review model 
+            * create a review on an item i bought
+            * get all reviews in on items
+            * make one review in each item
+            * update / delete 
+
+         
+   /////////////////////
+   * Admin prespective
+   ////////////////////
+      * As an admin i wanna send messages, so i can contact with users ,admins, superAdmin
+      * As an admin i wanna be able to confirm the order , so i can contact with user to make comfirmation or modification
+         * decrease quantity of items in the orders
+         * mark order is Connectd to true
+         * if user recieve the product , expired date count down
+      * As an admin i wanna to have a permision , so i can deal with resources
+         *  reviews 
+            * CRUD
+            * get all review of one product
+         * bookings
+            * CRUD 
+            * get all bookings who admins didn't contacted with client yet 
+            * get all bookings that's already recived and didn't expired yet
+            * get all bookings that expired to delete them
+            * get all bookings that already cotact with clients but , not sent yet
+         * Shop Items
+            * CRUD
+            * get top sold 5 items
+         * Category
+            * CRUD   
+            * get most 3 important category      
+         *  Users
+         * Crud
+         * get top 5 customers 
+   * 
+   //////////////////////////
+   * Super Admin prespective
+   /////////////////////////
+      * As a super Admin i have access of all data , so i can read,delete,update,delete
+      * As a super Admin i wanna be able to perform highly premision actions , like create,remove or deactive admins account
+      * As a super admin i wanna be able to send messages , so i can contact with  admins,users
+      * 
+
+ * ////////////////////
+ * API Resources
+ /////////////////////
+   * Categories
+      * id
+      * name
+      * photo
+      * items
+   * ShopItems
+      * id
+      * name
+      * photo
+      * quantityInStock
+      * price
+   * useres
+      * id
+      * name
+      * email
+      * password
+      * contactInfo
+         * adress
+         * phone
+         * photo
+   * bookings
+      * id
+      * userInfo
+      * items 
+      * coupon
+      * expiredDate
+      * paid
+      * currency
+      * confirm
+      * createdAt
+      * totalPrice
+   * coupons
+      * id
+      * name
+      * value
+   * favorites
+      * id
+      * item
+      * user 
+   * reviews 
+      * id
+      * item
+      * user
+      * rating
+      * comment  
+      
+      data modling:
+      * user : reviews  1:maney  parent Ref
+      * user: favorites 1:many  parent Ref
+      * user : messages 1:many   parent ref
+      * user : orders  1:many   parent ref
+      * coupon : orders 1:many  parent Embedded
+      * Category : items 1:many parent ref
+      * items : reviews  1:many  parent ref
+      * items : orders  many:many    childRef,embedded childs
+
+
+
+    ////////////
+    Controller: 
+    ///////////
+    Orders 
+        * get all orders (admin) 
+        * update an order (admin)
+        * create an order (user-admin)
+        * delete an order (admin)
+        * remove one item from Orders
+        * remove a coupon form order
+    Category 
+        * get all category(user-admin)
+        * get one category (admin)
+        * update a category (admin)
+        * delete a category (admin)
+        * create a category (admin)
+    Items 
+        * get all items in a category (user-admin)
+        * get an item (user-admin) populate reviews
+        * create new item (admin)
+        * update an item (admin)
+        * delete an item
+    Messages
+        * get all messages aggregate by user by  users (admin)
+        * get all messages sent to one user  //nested route
+        * get all messages of one user(admin)
+        * get on message (admin) to make response
+        * create a message/userId (user-admin) have from ref 
+        * create a message
+        * update a message (user - admin)
+        * delete a message 
+    favoirte
+        * create favorite with userId,ItemId
+        * get all favorites of one user
+        * delete favorite 
+
+    reviews
+        * get reviews by item 
+        * create a review 
+        * update a review by owner / Admin
+        * delete a review by owner/amdin
+
+    Coupon 
+        * Crud  (super:admin)
+
+    User
+
+
+
+
+
+
+
+   */
+
+// shop items

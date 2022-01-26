@@ -1,18 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../config/axios";
 
-export const fetchCategories = createAsyncThunk(
-  "categories/get",
+export const fetchItemsByCategory = createAsyncThunk(
+  "shopItems/get",
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+
     try {
       const res = await axios({
         method: "GET",
-        url: "/categories",
+        url: "/items/byCategory",
       });
-      return res.data.data.categories;
+      return res.data.data;
     } catch (error) {
-      // in listner render error to client by use action.payload.message
       return rejectWithValue(error.response.data);
     }
   }

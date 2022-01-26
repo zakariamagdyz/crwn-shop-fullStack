@@ -1,8 +1,13 @@
 const express = require("express");
 const itemController = require("../controllers/shopItemsController");
 const authController = require("../controllers/authController");
+const reviewRouter = require("./reviewRouter");
 
 const router = express.Router({ mergeParams: true });
+
+router.route("/byCategory").get(itemController.getItemsByCategory);
+
+router.use("/:id/reviews", reviewRouter);
 
 router
   .route("/")

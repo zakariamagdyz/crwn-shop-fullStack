@@ -16,7 +16,7 @@ const CheckoutItem = ({ item, increase, decrease, remove }) => {
       <ImgContainer>
         <Image src={photo} alt={name} />
       </ImgContainer>
-      <price>{name}</price>
+      <p>{name}</p>
       <QuantityContainer>
         <div onClick={() => decrease(item)}>&#10094;</div>
         <span>{quantity}</span>

@@ -5,9 +5,7 @@ const itemsRouter = require("./itemsRouter");
 
 const router = express.Router();
 
-router.use("/:categoryId/items", itemsRouter);
-
-router.get("/withItems", categoryController.getAllCategoriesWithItems);
+router.use("/:id/items", itemsRouter);
 
 router
   .route("/")

@@ -9,15 +9,17 @@ import {
 const ShopItems = ({ results: collections }) => {
   return (
     <div>
-      {collections.map(({ _id, shopItems, name }) => (
+      {collections.map(({ _id, items, category }) => (
         <CollectionsContainer className="collection-preview" key={_id}>
           <CollectionTitle className="title">
-            {name.toUpperCase()}
+            {category[0].name.toUpperCase()}
           </CollectionTitle>
           <Perview>
-            {shopItems.slice(0, 4).map((item) => (
-              <CollectionItem key={item._id} item={item} />
-            ))}
+            {items &&
+              items.length &&
+              items
+                .slice(0, 4)
+                .map((item) => <CollectionItem key={item._id} item={item} />)}
           </Perview>
         </CollectionsContainer>
       ))}

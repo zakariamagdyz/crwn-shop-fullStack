@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import devicesBreakpoints from "../../styles/mediaQuery";
 
 export const CategoryContainer = styled.div`
   min-width: 30%;
@@ -31,6 +32,12 @@ export const CategoryContainer = styled.div`
 
     & .content {
       opacity: 0.9;
+    }
+  }
+  // add more speceficity
+  && {
+    @media ${devicesBreakpoints.mobile} {
+      height: 20rem;
     }
   }
 `;
