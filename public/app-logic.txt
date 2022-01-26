@@ -175,9 +175,9 @@
         * update a message (user - admin)
         * delete a message 
     favoirte
-        * create favorite with userId,ItemId
-        * get all favorites of one user
-        * delete favorite 
+        * get all favorites of a user
+        * create favorite with userId,ItemId , no dupplicate
+        * delete favorite item by owner / admin
 
     reviews
         * get reviews by item 
@@ -189,10 +189,6 @@
         * Crud  (super:admin)
 
     User
-
-
-
-
 
 
 

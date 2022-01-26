@@ -11,21 +11,15 @@ exports.getAllOrders = factory.getAll(Order);
 exports.getAnOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
   if (!order) return next(new HttpError("No order found with that id", 404));
-  const totalPrice = await order.getPriceAfterDiscount();
-  // add total price to the order
-  const restult = { ...order._doc, totalPrice: totalPrice };
-
-  res.status(200).json({ status: "success", data: { restult } });
+  await order.getPriceAfterDiscount();
+  res.status(200).json({ status: "success", data: { order } });
 });
 
 //////////////////////////////////////////////////////////
 exports.createAnOrder = catchAsync(async (req, res, next) => {
   const order = await Order.create(req.body);
-  const totalPrice = await order.getPriceAfterDiscount();
-  // add total price to the order
-  const restult = { ...order._doc, totalPrice: totalPrice };
-
-  res.status(200).json({ status: "success", order: { restult } });
+  await order.getPriceAfterDiscount();
+  res.status(200).json({ status: "success", order: { order } });
 });
 
 //////////////////////////////////////////////////////////////
@@ -34,11 +28,9 @@ exports.updateAnOrder = catchAsync(async (req, res, next) => {
     new: true,
   });
   if (!order) return next(new HttpError("No order found with that id", 404));
-  const totalPrice = await order.getPriceAfterDiscount();
-  // add total price to the order
-  const restult = { ...order._doc, totalPrice: totalPrice };
+  await order.getPriceAfterDiscount();
 
-  res.status(200).json({ status: "success", data: { restult } });
+  res.status(200).json({ status: "success", data: { order } });
 });
 
 //////////////////////// Remove item from order list ///////////////////////
@@ -58,13 +50,8 @@ exports.removeItemfromOrder = catchAsync(async (req, res, next) => {
     return next(new HttpError("Order must have one item at least!", 404));
 
   order.orders.pull(req.body.itemId);
-  await order.save();
-
-  const totalPrice = await order.getPriceAfterDiscount();
-  // add total price to the order
-  const restult = { ...order._doc, totalPrice: totalPrice };
-
-  res.status(200).json({ status: "success", data: { restult } });
+  await order.getPriceAfterDiscount();
+  res.status(200).json({ status: "success", data: { order } });
 });
 
 //////////////////////// Remove Coupon ///////////////////////
@@ -77,11 +64,8 @@ exports.removeAcouponFromOrder = catchAsync(async (req, res, next) => {
     { new: true }
   );
   if (!order) return next(new HttpError("No order found with that Id.", 404));
-  const totalPrice = await order.getPriceAfterDiscount();
-  // add total price to the order
-  const restult = { ...order._doc, totalPrice: totalPrice };
-
-  res.status(200).json({ status: "success", data: { restult } });
+  await order.getPriceAfterDiscount();
+  res.status(200).json({ status: "success", data: { order } });
 });
 
 exports.deleteAnOrder = factory.deleteOne(Order);

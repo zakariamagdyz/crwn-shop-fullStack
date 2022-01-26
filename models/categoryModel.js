@@ -20,4 +20,15 @@ const categorySchema = new mongoose.Schema(
   }
 );
 
+categorySchema.virtual("shopItems", {
+  ref: "ShopItem",
+  foreignField: "category",
+  localField: "_id",
+});
+
+categorySchema.pre(/^findOne/, function (next) {
+  this.populate("shopItems");
+  next();
+});
+
 module.exports = mongoose.model("Category", categorySchema);
