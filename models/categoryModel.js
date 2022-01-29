@@ -26,9 +26,9 @@ categorySchema.virtual("shopItems", {
   localField: "_id",
 });
 
-categorySchema.pre(/^findOne/, function (next) {
-  this.populate("shopItems");
-  next();
-});
+// categorySchema.pre(/^findOne/, function (next) {
+//   this.populate("shopItems");
+//   next();
+// });
 
 module.exports = mongoose.model("Category", categorySchema);

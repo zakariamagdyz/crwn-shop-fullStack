@@ -1,10 +1,11 @@
 import { lazy, Suspense, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { fetchCategories } from "../../redux/directory/directoryAsyncActions";
 import { isSignedIn } from "../../redux/auth/authAsyncActions";
 import Spinner from "../../components/Spinner/spinner";
 import Error from "../../components/Error/errorComponent";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 /////////////////// import components ////////////////////////////
 import { GlobalStyle } from "./globalStyle";
 import Header from "../../components/header/header.component";
@@ -12,20 +13,19 @@ const HomePage = lazy(() => import("../home-page/homepage"));
 const ShopRootPage = lazy(() => import("../shop-root-page/shopCollection"));
 const SignInSignOut = lazy(() => import("../signs-page/SignInSignUpPage"));
 const CheckoutPage = lazy(() => import("../checkout-page/checkoutPage"));
-
 /////////////////////////////////////////////////////////////////////////////
 
-function App({ isLoggedIn, getCategories, checkForUser }) {
+function App({ isLoggedIn, checkForUser }) {
   // check if user is logged in and fetch app data from backend
   useEffect(() => {
     checkForUser();
-    getCategories();
-  }, [getCategories, checkForUser]);
+  }, [checkForUser]);
 
   /// return Jsx
   return (
     <Fragment>
       <GlobalStyle />
+      <ToastContainer />
       <Header isLoggedIn={isLoggedIn} />
       <Suspense fallback={<Spinner />}>
         <Routes>
@@ -38,6 +38,7 @@ function App({ isLoggedIn, getCategories, checkForUser }) {
             }
           />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/profile" element={<div>hola</div>} />
           <Route
             path="*"
             element={
@@ -59,8 +60,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignIn: (user) => dispatch(user),
-    getCategories: () => dispatch(fetchCategories()),
     checkForUser: () => dispatch(isSignedIn()),
   };
 };

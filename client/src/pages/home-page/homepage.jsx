@@ -1,12 +1,17 @@
-import { HomePageStyle } from "./homepage.style";
-import React from "react";
+import React, { useEffect } from "react";
 import Directory from "../../components/home-directory/directory.component";
+import { HomePageStyle } from "./homepage.style";
 import { connect } from "react-redux";
+import { fetchCategories } from "../../redux/directory/directoryAsyncActions";
+
 //////////////////////////////////////////
-const HomePage = ({ isLoading, categories }) => {
+const HomePage = ({ isLoading, categories, getCategory }) => {
+  useEffect(() => {
+    getCategory();
+  }, [getCategory]);
   return (
     <HomePageStyle>
-      <Directory isLoading={isLoading} results={categories} />
+      <Directory isLoading={isLoading} data={categories} />
     </HomePageStyle>
   );
 };
@@ -16,4 +21,8 @@ const mapStateToProps = (state) => ({
   isLoading: state.directory.isLoading,
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = (dispatch) => ({
+  getCategory: () => dispatch(fetchCategories()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

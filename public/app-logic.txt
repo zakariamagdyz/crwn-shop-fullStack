@@ -9,41 +9,107 @@
    //////////////////
       * As a user i wanna have my profile,so i can login or logout from the app
          backEnd
-            * Add forgot password , Reset password Feature , update email,password,photo,adress,phone
-            * deactive my account functionality
+            * models
+               User
+            * controllers
+               * Add forgot password , Reset password Feature , update email,password,photo,adress,phone
+               * deactive my account functionality
+
          frontEnd
-            * profile page
-            * change photo
-            * update password 
-            * deactive account
-            * update email
-            * send messages 
-            * update personal info
+            * Data
+               * user stateSlice
+                  * signIn
+                  * sinOut
+                  * isLoggedIn
+                  * signUp
+                  *updateUser
+
+            * view
+               * profile page
+            
       * As a user i wanna choose from products as i want , so i can go to cart to make order
-         * backEnd
-            * create order  
+         backEnd
+            * Models
+               * order model
+            * Controllers
+               * makeOrder
+               * applyCoupon
+
+         frontEnd
+            * data
+               * cart stateSlice
+                  * addItemToCart
+                  * removeItemFromCart
+                  * clearCart
+            * view
+               * cart menu
+        
       * As a user i wanna implement an order with a coupon , so i can have a discount on my orders
-         * backEnd 
-            * create coupon model   
-            * create an order with an cupon 
+         backEnd 
+            * Models
+               *  coupon model 
+            * Controllers
+          
+         frontEnd
+            * data
+               * orderSlice 
+                  * apply a coupon
+                  * remove a coupon 
+                  * sent order
+            * view
+               * checkout page
       * As a user i wanna favorite some of the items , so i can buy them later
-         * backEnd
-            * create favorite model 
-            * create , delete , get all  a favorite by item id , user id 
+         backEnd
+           * Models
+               * favorite model
+            * Controllers
+               * getAllFavorites
+               * addToFavorites
+               * removeOneFavorite
+        
+         frontEnd
+            * data
+               * favorite stateSlice
+                  * getAllFavorites
+                  * addToFavorite
+                  * removeFromFavorite
+            * view
+               * favorite Page
+
       * As a user i can bring back the order i already made, through 14 days, so i can make sure to get high quality
       * As a user i wanna be able to send message to the admin, so if something wrong happend i can contact with them
-        * backend:
-            * create message model
-            * send messages to admins
+         backend:
+            * Models
+               * message model
+               * Controllers
+                  * send messages to admins
+
+         frontEnd
+            * data
+               * favorite stateSlice
+                  * getAllFavorites
+                  * addToFavorite
+                  * removeFromFavorite
+            * view
+               * favorite Page
+
       * As a user i wanna make a review to the shop item, so i can share my opinion with others
         * As a user i wanna be able only to review the items i had bought, so i can't review something i never bought
         * As a user i wanna to be allowed to make one review 
          backend :
-            * create review model 
-            * create a review on an item i bought
-            * get all reviews in on items
-            * make one review in each item
-            * update / delete 
+            * Models
+               * create review model 
+            * Controllers         
+               * create a review on an item i bought
+               * get all reviews in on items
+               * make one review in each item
+               * update / delete  (user==owner)
+               
+         frontEnd
+            * data
+               
+            * view
+               
 
          
    /////////////////////
@@ -148,7 +214,7 @@
     ///////////
     Orders 
         * get all orders (admin) 
-        * update an order (admin)
+        * update an order info/coupon (admin)
         * create an order (user-admin)
         * delete an order (admin)
         * remove one item from Orders

@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 const factory = require("./factoryController");
 const ShopItems = require("../models/shopItemModel");
 const catchAsync = require("../utils/catchAsync");
@@ -40,3 +42,34 @@ exports.getItemsByCategory = catchAsync(async (req, res, next) => {
 
   res.status(200).json({ status: "success", data: { data } });
 });
+
+// exports.getCategoryItems = catchAsync(async (req, res, next) => {
+//   console.log(req.params.id);
+//   const data = await ShopItems.aggregate([
+//     { $match: { category: ObjectId(req.params.id) } },
+//     {
+//       $group: {
+//         _id: "$category",
+//         numOfItems: { $sum: 1 },
+//         items: { $push: "$$ROOT" }, // push all item in an array
+//       },
+//     },
+//     { $sort: { numOfItems: 1 } },
+//     {
+//       $lookup: {
+//         // we can get specific fields from parent we wanna populate
+//         from: "categories",
+//         let: { category: "$_id" }, // make variable with data you wanna search to access it in pipline
+//         pipeline: [
+//           { $match: { $expr: { $eq: ["$_id", "$$category"] } } }, // get category which it's id eq category v
+//           // we can use $in :["$_id","$$variable"]  also
+//           { $project: { name: 1 } }, // get name of category only
+//         ],
+//         as: "category",
+//       },
+//     },
+//   ]);
+//   console.log(data);
+
+//   res.status(200).json({ status: "success", data: { data } });
+// });

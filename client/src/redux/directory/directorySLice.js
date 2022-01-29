@@ -1,9 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCategories } from "./directoryAsyncActions";
+import {
+  fetchCategories,
+  fetchCategoryChilds,
+  fetchItemsByCategory,
+} from "./directoryAsyncActions";
 
 const directorySLice = createSlice({
   name: "category",
-  initialState: { isLoading: false, categories: null, error: null },
+  initialState: {
+    isLoading: false,
+    error: null,
+    categories: null,
+    categoryWithChilds: null,
+    categoriesWithItems: null,
+  },
+  reducers: {
+    setCurrentCategory: function (state, action) {
+      state.currentCategory = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -17,18 +32,33 @@ const directorySLice = createSlice({
       .addCase(fetchCategories.rejected, (state, action) => {
         state.error = action.payload;
         state.isLoading = false;
+      }) //////////////////////////////////////////////////
+      .addCase(fetchCategoryChilds.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchCategoryChilds.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categoryWithChilds = action.payload.category;
+      })
+      .addCase(fetchCategoryChilds.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      }) //////////////////////////////////////////////////
+      .addCase(fetchItemsByCategory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchItemsByCategory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.categoriesWithItems = action.payload.data;
+      })
+      .addCase(fetchItemsByCategory.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
       });
   },
 });
 
-export const selectCategoryName = (categoryId) => (state) => {
-  if (state.directory.categories) {
-    const directory =
-      state.directory.categories &&
-      state.directory.categories.find((el) => el._id === categoryId);
-    // handle case if user put wrong id that not match of category
-    return directory && directory.name;
-  }
-};
+export const { setCurrentCategory } = directorySLice.actions;
 
 export default directorySLice.reducer;

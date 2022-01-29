@@ -2,8 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./auth/authSlice";
 import directorySlice from "./directory/directorySLice";
 import cartSlice from "./cart/cartSlice";
-import collectionSlice from "./collection/collectionSlice";
-import shopItems from "./shopItems/shopSlice";
+import favoritesSlice from "./favoriteData/favoriteSlice";
+import manageSlice from "./manage/manageSlice";
+import ordersSlice from "./ordersData/orderSlice";
 //import superAxios from "../config/axios";
 
 // const axiosMiddleware = (store) => (next) => (action) => {
@@ -23,8 +24,9 @@ export default configureStore({
     auth: authSlice,
     directory: directorySlice,
     cart: cartSlice,
-    collection: collectionSlice,
-    items: shopItems,
+    favorites: favoritesSlice,
+    orders: ordersSlice,
+    manage: manageSlice,
   },
   // middleware: [...getDefaultMiddleware(), axiosMiddleware],
   devTools: process.env.NODE_ENV === "production" ? false : true,

@@ -1,0 +1,52 @@
+
+slices 
+////////
+* userData
+    * currentUser
+    * isLoading
+    * error
+    Actions 
+        * signIn
+        * signUp
+        * signOut
+        * isLoggedIn
+* directory
+    * categories
+    * categoryWithChilds
+    * categoriesWithItems
+    * isLoading
+    * error
+    Actions:
+        * fetchAllCategories
+        * fetchACategoryWithItems
+        * fetchAllCategoriesWithItems
+* favoritesData
+    * favorites
+    * isLoading
+    * error
+     Actions:
+        * fetchAllfavorites
+        * removeFromFavorites
+        * addToFavorite
+* cartData
+    * cartItems
+     Actions:
+        * addToCart
+        * removeOneItem
+        * clearItem
+* OrdersData
+    * myOrders
+    * RecentOrder
+    * isLoading
+    * error
+    Actions :
+        * getMyOrders
+        * sentAnOrder
+* manage 
+    * currentResource
+    * currentItem
+    * isLoading
+    * error
+    Actions
+        * getCurrentResources
+        * getCurrentItem

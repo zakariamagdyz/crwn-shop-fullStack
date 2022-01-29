@@ -23,6 +23,13 @@ export const CollectionBtnContainer = styled.div`
   transform: translateY(30px);
   opacity: 0;
   visibility: hidden;
+
+  @media ${devicesBreakpoints.tabPort} {
+    transition: unset;
+    transform: unset;
+    opacity: 0.8;
+    visibility: unset;
+  }
 `;
 
 export const CollectionContainer = styled.div`
@@ -45,5 +52,16 @@ export const CollectionContainer = styled.div`
   }
   @media ${devicesBreakpoints.tabPort} {
     width: 48%;
+
+    &:hover {
+      cursor: pointer;
+      ${CollectionImage} {
+        opacity: 1;
+      }
+
+      ${CollectionBtnContainer} {
+        opacity: 1;
+      }
+    }
   }
 `;

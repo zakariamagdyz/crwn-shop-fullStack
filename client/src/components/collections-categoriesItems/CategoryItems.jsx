@@ -1,16 +1,16 @@
 import React from "react";
 import CollectionItem from "../collection-item/collectionItem.component";
-import isDataFetched from "../isDataFetched/isDataFetched";
+import withChecks from "../withChecks/WithChecks";
 
 import { ItemsContainer, CategoryContainer } from "./category.style";
 import { Title } from "../../styles/Title";
 
-const CategoryItems = ({ categoryName, results: collectionData }) => {
+const CategoryItems = ({ data: collectionData }) => {
   return (
     <CategoryContainer>
-      <Title>{categoryName}</Title>
+      <Title>{collectionData.name}</Title>
       <ItemsContainer className="collection-container">
-        {collectionData.map((item) => (
+        {collectionData.shopItems.map((item) => (
           <CollectionItem key={item._id} item={item} />
         ))}
       </ItemsContainer>
@@ -18,4 +18,4 @@ const CategoryItems = ({ categoryName, results: collectionData }) => {
   );
 };
 
-export default isDataFetched(CategoryItems);
+export default withChecks(CategoryItems);

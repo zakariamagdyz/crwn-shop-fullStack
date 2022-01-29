@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Header } from "./message.styles";
 
-const EmptyResults = ({ children }) => {
+const EmptyResults = ({ children, error }) => {
   return (
     <Container>
-      <Header>{children}</Header>
+      <Header error={error}>{children}</Header>
     </Container>
   );
 };

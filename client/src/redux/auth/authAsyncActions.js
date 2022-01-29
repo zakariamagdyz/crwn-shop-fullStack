@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../config/axios";
+import { toast } from "react-toastify";
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
@@ -14,6 +15,7 @@ export const signIn = createAsyncThunk(
 
       return res.data.data;
     } catch (error) {
+      toast.error(error.response.data.message, { theme: "colored" });
       return rejectWithValue(error.response.data);
     }
   }
@@ -32,6 +34,7 @@ export const signUp = createAsyncThunk(
 
       return res.data.data;
     } catch (error) {
+      toast.error(error.response.data.message, { theme: "colored" });
       return rejectWithValue(error.response.data);
     }
   }
@@ -47,6 +50,8 @@ export const signOut = createAsyncThunk("auth/signOut", async (_, thunkAPI) => {
 
     return res.data.data;
   } catch (error) {
+    toast.error(error.response.data.message, { theme: "colored" });
+
     return rejectWithValue(error.response.data);
   }
 });

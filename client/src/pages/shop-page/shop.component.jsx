@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 import ShopItems from "../../components/shop-collection-items/CollectionItems";
 import { Title } from "../../styles/Title";
-import { fetchItemsByCategory } from "../../redux/shopItems/shopAsyncActions";
+import { fetchItemsByCategory } from "../../redux/directory/directoryAsyncActions";
 
 const Shop = ({ collections, isLoading, getItems }) => {
   useEffect(() => {
@@ -11,14 +11,14 @@ const Shop = ({ collections, isLoading, getItems }) => {
   return (
     <div>
       <Title>Collections</Title>
-      <ShopItems isLoading={isLoading} results={collections} />
+      <ShopItems isLoading={isLoading} data={collections} />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  collections: state.items.shopItems,
-  isLoading: state.items.isLoading,
+  collections: state.directory.categoriesWithItems,
+  isLoading: state.directory.isLoading,
 });
 
 const mapDispatchToprops = (dispatch) => ({

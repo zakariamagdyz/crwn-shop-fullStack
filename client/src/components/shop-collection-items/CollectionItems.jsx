@@ -1,4 +1,4 @@
-import isDataFetched from "../isDataFetched/isDataFetched";
+import withChecks from "../withChecks/WithChecks";
 import CollectionItem from "../collection-item/collectionItem.component";
 import {
   Perview,
@@ -6,7 +6,7 @@ import {
   CollectionsContainer,
 } from "./collection.styles";
 
-const ShopItems = ({ results: collections }) => {
+const ShopItems = ({ data: collections }) => {
   return (
     <div>
       {collections.map(({ _id, items, category }) => (
@@ -27,4 +27,4 @@ const ShopItems = ({ results: collections }) => {
   );
 };
 
-export default isDataFetched(ShopItems);
+export default withChecks(ShopItems);

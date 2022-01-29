@@ -11,14 +11,12 @@ exports.getAllOrders = factory.getAll(Order);
 exports.getAnOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
   if (!order) return next(new HttpError("No order found with that id", 404));
-  await order.getPriceAfterDiscount();
   res.status(200).json({ status: "success", data: { order } });
 });
 
 //////////////////////////////////////////////////////////
 exports.createAnOrder = catchAsync(async (req, res, next) => {
   const order = await Order.create(req.body);
-  await order.getPriceAfterDiscount();
   res.status(200).json({ status: "success", order: { order } });
 });
 

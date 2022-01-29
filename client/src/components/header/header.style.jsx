@@ -13,7 +13,6 @@ export const HeaderContainer = styled.div`
 
 export const HeaderList = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
 
   @media ${devicesBreakpoints.mobile} {
@@ -23,6 +22,11 @@ export const HeaderList = styled.div`
 
 export const HeaderLink = styled(Link)`
   padding: 2rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
   &:hover:not(.logo) {
     box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   }

@@ -16,8 +16,6 @@ module.exports = class ApiFeatures {
       (match) => `$${match}`
     );
 
-    console.log(QObjString);
-
     this.query = this.query.find(JSON.parse(QObjString));
 
     return this;

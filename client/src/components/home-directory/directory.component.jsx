@@ -1,9 +1,9 @@
 import React from "react";
 import MenuItem from "../menu-item/menu-item.component";
-import isDataFetched from "../isDataFetched/isDataFetched";
+import withChecks from "../withChecks/WithChecks";
 import { DirectoryContainer } from "./directory.styles";
 
-const Directory = ({ results: categories }) => {
+const Directory = ({ data: categories }) => {
   return (
     <DirectoryContainer>
       {categories.map((category) => (
@@ -13,4 +13,4 @@ const Directory = ({ results: categories }) => {
   );
 };
 
-export default isDataFetched(Directory);
+export default withChecks(Directory);
