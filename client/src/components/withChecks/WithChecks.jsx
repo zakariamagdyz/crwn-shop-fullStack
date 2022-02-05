@@ -13,7 +13,7 @@ const withChecks =
       return <Message error>Something went wrong, Please try again :(</Message>;
     }
 
-    return (data && data.length) ||
+    return data?.length ||
       (data instanceof Object && Object.keys(data).length) ? (
       <WrappedComponent {...others} data={data} />
     ) : (

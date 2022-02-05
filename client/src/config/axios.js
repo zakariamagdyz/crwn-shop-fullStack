@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "url"
-    : "http://localhost:5000/crwn-shop/v1";
+  process.env.NODE_ENV !== "production"
+    ? `${process.env.REACT_APP_API_URL_DEV}/crwn-shop/v1`
+    : `${process.env.REACT_APP_API_URL_PROD}/crwn-shop/v1`;
 
 const axiosApp = axios.create({
   baseURL,

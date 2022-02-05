@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { selectItems, selectTotalPrice } from "../../redux/cart/cartSlice";
-import CheckoutItem from "../../components/checkout-item/checkoutItem";
+import CheckoutItem from "./components/checkout-item/checkoutItem";
 import { Checkout, CheckoutHeader, CheckoutTotal } from "./checkout.styles";
 
 const checkoutPage = ({ checkoutItems, totalPrice }) => {

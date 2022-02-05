@@ -1,6 +1,6 @@
 import React from "react";
 import MenuItem from "../menu-item/menu-item.component";
-import withChecks from "../withChecks/WithChecks";
+import withChecks from "../../../../components/withChecks/WithChecks";
 import { DirectoryContainer } from "./directory.styles";
 
 const Directory = ({ data: categories }) => {

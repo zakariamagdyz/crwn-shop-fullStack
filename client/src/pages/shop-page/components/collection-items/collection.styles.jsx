@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import dvicesBreakpoints from "../../styles/mediaQuery";
+import dvicesBreakpoints from "../../../../styles/mediaQuery";
 
 export const CollectionsContainer = styled.div`
   margin-bottom: 5rem;

@@ -33,7 +33,7 @@ const Header = ({ isLoggedIn, handleSignOut, userName }) => {
             <HeaderLink as="div" onClick={handleSignOut}>
               SIGN OUT
             </HeaderLink>
-            <HeaderLink to="/profile">{userName}</HeaderLink>
+            <HeaderLink to="/profile/settings">{userName}</HeaderLink>
           </Fragment>
         ) : (
           <HeaderLink to="/signin">SIGN IN</HeaderLink>

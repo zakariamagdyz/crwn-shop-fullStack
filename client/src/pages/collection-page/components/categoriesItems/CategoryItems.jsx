@@ -1,9 +1,9 @@
 import React from "react";
-import CollectionItem from "../collection-item/collectionItem.component";
-import withChecks from "../withChecks/WithChecks";
+import CollectionItem from "../../../../components/collection-item/collectionItem.component";
+import withChecks from "../../../../components/withChecks/WithChecks";
 
 import { ItemsContainer, CategoryContainer } from "./category.style";
-import { Title } from "../../styles/Title";
+import { Title } from "../../../../styles/Title";
 
 const CategoryItems = ({ data: collectionData }) => {
   return (

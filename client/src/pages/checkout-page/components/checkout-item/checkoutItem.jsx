@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart, clear, remove } from "../../redux/cart/cartSlice";
+import { addToCart, clear, remove } from "../../../../redux/cart/cartSlice";
 import { connect } from "react-redux";
 
 import {

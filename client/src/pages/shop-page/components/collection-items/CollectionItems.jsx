@@ -1,5 +1,5 @@
-import withChecks from "../withChecks/WithChecks";
-import CollectionItem from "../collection-item/collectionItem.component";
+import withChecks from "../../../../components/withChecks/WithChecks";
+import CollectionItem from "../../../../components/collection-item/collectionItem.component";
 import {
   Perview,
   CollectionTitle,
@@ -15,8 +15,7 @@ const ShopItems = ({ data: collections }) => {
             {category[0].name.toUpperCase()}
           </CollectionTitle>
           <Perview>
-            {items &&
-              items.length &&
+            {items?.length &&
               items
                 .slice(0, 4)
                 .map((item) => <CollectionItem key={item._id} item={item} />)}

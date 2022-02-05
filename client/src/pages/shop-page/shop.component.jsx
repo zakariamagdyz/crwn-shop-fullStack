@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import ShopItems from "../../components/shop-collection-items/CollectionItems";
+import ShopItems from "./components/collection-items/CollectionItems";
 import { Title } from "../../styles/Title";
 import { fetchItemsByCategory } from "../../redux/directory/directoryAsyncActions";
 

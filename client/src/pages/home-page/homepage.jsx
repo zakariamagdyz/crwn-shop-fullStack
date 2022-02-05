@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Directory from "../../components/home-directory/directory.component";
+import Directory from "./components/directory/directory.component";
 import { HomePageStyle } from "./homepage.style";
 import { connect } from "react-redux";
 import { fetchCategories } from "../../redux/directory/directoryAsyncActions";

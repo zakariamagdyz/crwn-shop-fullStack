@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import devicesBreakpoints from "../../styles/mediaQuery";
+import devicesBreakpoints from "../../../../styles/mediaQuery";
 
 export const CategoryContainer = styled.div`
   min-width: 30%;

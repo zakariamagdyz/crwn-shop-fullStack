@@ -30,6 +30,7 @@ export const GlobalStyle = styled.createGlobalStyle`
 
   :root {
     --main-color: #fff;
+    --secondary-color: #2c3e50;
   }
 
   body {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CategoryItems from "../../components/collections-categoriesItems/CategoryItems";
+import CategoryItems from "./components/categoriesItems/CategoryItems";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCategoryChilds } from "../../redux/directory/directoryAsyncActions";
